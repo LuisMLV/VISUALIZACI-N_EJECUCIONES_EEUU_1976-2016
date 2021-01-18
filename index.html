@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="Jude moon">
+    <title>Ejecuciones en Estados Unidos: análisis del periodo 1976-2016</title>
+
+    <!-- load d3 and dimple libraries -->
+    <script src="http://d3js.org/d3.v4.min.js"></script>
+    <script src="http://dimplejs.org/dist/dimple.v2.3.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/d3plus/1.9.2/d3plus.full.min.js"></script>
+
+    <!-- add styles to text and graphics -->
+    <style>
+        h1 {
+            background-color: black;
+            color: floralwhite;
+            font-family: Helvetica, sans-serif;
+            width: 100%;
+            height: 80px;
+            text-align: center;
+            padding-top: 30px;
+        }
+        h2 {
+            font-size: 1.4em;
+            text-transform: uppercase;
+            font-family: Helvetica;
+            color: #000;
+            margin-top: 0;
+        }
+        h3 {
+            font-family: Helvetica, sans-serif;
+            text-align: center;
+        }
+        h4 {
+            font-family: Helvetica, sans-serif;
+            text-align: left;
+        }
+        div.text {
+            font-family: Helvetica;
+            padding: 5px;
+            margin: 20px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="main-title">Ejecuciones en Estados Unidos: análisis del periodo 1976-2016</h1>
+    <h4 class="main-autor">Nombre: Luis Manuel López Vázquez</h3>
+    <h4 class="main-url">Url: <a href="https://js-t2jgaf.stackblitz.io/">https://js-t2jgaf.stackblitz.io/</a></h3>
+    <h4 class="main-fuente">Fuente: <a href="https://www.kaggle.com/usdpic/execution-database">https://www.kaggle.com/usdpic/execution-database </a></h3>
+    <h4 class="main-fecha">Fecha: 15/01/2020</h4>
+    <br>
+    <br>
+
+    <div class="summary">
+        <h2 class="text-title">Resumen</h2>
+        <div class="text">
+          El objetivo de este trabajo es describir las características y circunstancias que rodearon a las ejecuciones en Estados Unidos durante el periodo 1976-2016 a través de la visualización. Para ello analizamos diferentes aspectos de los presos ejecutados en el periodo: las víctimas de los presos, localización geográfica de las ejecuciones y evolución de las ejecuciones a lo largo del tiempo. La audiencia principal es el profesor de la asignatura de Visualización de datos del máster de Big Data y Data Science de la Universidad internacional de Valencia, y el mensaje es transmitido a través de una historia de visualización en formato pdf y en formato web. Los tipos de visualización utilizados son gráfico circular, gráfico de barras vertical y horizontal, treemap zoomable y gráfico de líneas. Las herramientas utilizadas son Google Sheets, R con su librería ggplot 2, python con sus librerías seaborn y matplotlib, y javascript con su librería D3plus. Posterior a la realización de la historia de visualización se extraen unas conclusiones a partir de los resultados de esta: los presos ejecutados en Estados Unidos durante el periodo analizado fueron en su mayoría hombres blancos de entre 35-44 años, y fueron ejecutados mediante inyección letal. En la mayoría de los casos los reos ejecutados asesinaron sólo a una víctima, siendo esta frecuentemente de raza blanca. Hombres y mujeres fueron víctimas de los reos en igual proporción. La región que más presos ejecutó fue la región Sur y el estado que más ejecutó fue Texas. Aunque hasta finales de los noventa el número de ejecuciones estuvo en una tendencia ascendente en su evolución temporal, a partir de los 2000 entró en una tendencia descendente hasta el final del periodo, y la inyección letal llegó a desplazar a todos los otros métodos en su uso en las ejecuciones. 
+
+
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+
+  <div class="summary">
+        <h2 class="text-title">Introducción</h2>
+        <div class="text">
+
+Este proyecto tiene como <b>objetivo</b> describir las distintas características y circunstancias que han rodeado a las ejecuciones de presos efectuadas en los Estados Unidos de Ámerica entre 1976 y 2016 a través de la visualización. Para ello se parte de cierto conjunto de datos acerca de todos los casos de ejecución de la pena de muerte en este pais (cuyo número asciende a 1442 casos) en el periodo temporal antes mencionado.
+
+
+<br>
+<br>
+
+De esta manera, esta historia de visualización se contará a través de las siguientes dimensiones o apartados (determinados en parte por la información disponible en el conjunto de datos) con los que se tratará de responder a una serie de preguntas:
+<br>
+<br>
+
+<b>- Ejecutados:</b> Los presos que fueron ejecutados en el periodo de tiempo que analizamos aquí. Se analizará el sexo de los reos, sus grupos raciales, grupos de edades y métodos con los que fueron ejecutados. Se intentará responder a la pregunta:<b> ¿Qué características fueron las más comunes entre los presos ejecutados y qué método se usó más para realizar las ejecuciones?.</b>
+<br>
+<br>
+<b>- Víctimas:</b> Las víctimas asesinadas por los presos que fueron ejecutados. Se analizará si la víctima fue única o múltiple, el sexo de las víctimas y su raza. Se intentará responder a la pregunta:<b> ¿Qué porcentaje de ejecutados cometieron asesinatos múltiple y cuáles fueron las características de las víctimas?.</b>
+<br>
+<br>
+<b>- Regiones y estados:</b> Localización geográfica de las ejecuciones. Se analizarán las ejecuciones por región oficial y estado de los EE.UU donde se llevaron a cabo. Se intentará responder a la pregunta:<b> ¿En qué regiones y estados de Estados Unidos se ejecutó más para el periodo analizado?.</b>
+<br>
+<br>
+<b>- Evolución de las ejecuciones a lo largo del tiempo:</b> Ocurrencia temporal de las ejecuciones a lo largo de los años del periodo considerado. Se analizará la ocurrencia temporal tanto de las ejecuciones en general como de las ejecuciones desglosadas por métodos de ejecución. Se intentará responder a la pregunta:<b> ¿Cómo ha evolucionado el número de ejecuciones a lo largo del tiempo?.</b>
+<br>
+<br>
+
+Tras el desarrollo de estos apartados se procederá a la realización de una interpretación general de las visualizaciones a modo de conclusión, donde se expondrán la respuestas halladas a las preguntas en función de lo analizado en las visualizaciones. 
+<br>
+<br>
+            <div class="metadato  " >
+              La audiencia de este trabajo es todo el que quiera tomar como ejemplo y documentación este proyecto, pero es especialmente el profesor de la asignatura de Visualización de datos del máster Big Data y Data Science de la Universidad Internacional de Valencia (VIU). El contexto de este trabajo es la satisfacción de los requisitos de evaluación de la asignatura antes mencionada, pero también es la práctica y desarrollo de competencias profesionales exigidas tanto por el máster como personalmente.
+              
+
+            </div>
+
+
+</br>
+</br>
+<b>La audiencia principal</b> de este trabajo es <b>el profesor de la asignatura de Visualización de datos del
+ máster Big Data y Data Science de la Universidad Internacional de Valencia (VIU)</b>. Debido a que este es un proyecto académico, y teniendo en cuenta la audiencia principal, para cada visualización se realizará primero una pequeña interpretación de lo observado, después una justificación del motivo por el que se eligió el tipo de visualización y otros detalles teóricos, y finalmente se mencionará y justificará con qué herramientas está elaborada la visualización correspondiente.
+<br>
+<br>
+Esta historia de visualización, <b>el mensaje</b> de este trabajo, se plasmará tanto en formato pdf como en formato web a través de un proyecto de Stackblitz generado para ello.
+        </div>
+    </div>
+<br>
+<br>
+<br>
+ <div class="plot">
+      
+        <h2 class="plot-title">Ejecutados</h2>
+        <div class="text">
+
+          <b>Sexo</b>
+
+          <br>
+          <br>
+
+          Del total de ejecutados en el periodo analizado, los hombres representaron un 98,9 % y las mujeres un 1,1 %. Llama la atención la enorme proporción de hombres ejecutados frente a la proporción ínfima de mujeres ejecutadas.
+          
+          <br>
+          <br>
+
+          Para visualizar esta información se ha usado un gráfico circular, ya que es un tipo de visualización muy idónea para representar proporciones de un total siempre y cuando la precisión no sea demasiado importante y el número de categorías a representar no sea muy elevado.
+          <br>
+          <br>
+          Este gráfico se ha construido usando la herramienta Google Sheets. Esta es una herramienta hoja de cálculo ofrecida por Google, elegida para trabajar en este proyecto debido a que permite realizar visualizaciones bastante decentes de forma sencilla y eficaz.
+
+        </div> 
+        <br> 
+
+        <a href="https://ibb.co/fSzZ0MX"><img src="https://i.ibb.co/sPdc3jg/ex-bygenre.png" alt="ex-bygenre" border="0"></a>
+
+        <br>
+        <br>
+      
+
+        
+
+         <div class="text">
+           <br>
+           <br>
+           <b>Raza</b>
+           <br>
+           <br>
+          Respecto a la raza de los ejecutados, el mayor número de ejecutados se encontró entre los reos de raza blanca. En segundo lugar se encontraron los reos de raza negra, latinos en tercer lugar, nativos americanos en cuarto y asiáticos en quinto lugar.
+          <br>
+          <br>
+          Para esta visualización se ha elegido un gráfico de barras debido a que es bastante bueno para comparar valores entre diferentes categorías. También podría haberse realizado un gráfico circular, pero había un número algo elevado de categorías y se preferió que además hubiera más precisión en el análisis visual. También se ha ordenado las categorías de mayor número de ejecutados a menor número para una mejor comparación y, por tanto, interpretación.
+          <br>
+          <br>
+          Este gráfico ha sido realizado en el lenguaje de análisis estadístico R, con la librería ggplot2. Aunque no se ha visto en clase, se ha decidido utilizar estas herramientas debido a que tanto R como sus librerías son bastante competentes para realizar análisis estadísticos y representaciones gráficas, y cuentan con un gran soporte y documentación entre la comunidad que permite al usuario desenvolverse con facilidad y resolver inconvenientes durante el análisis y diseño de forma rápida.
+
+        </div> 
+        <br>
+
+        <a href="https://ibb.co/1ddY9q0"><img src="https://i.ibb.co/nnnqDcw/ex-byrace.png" alt="ex-byrace" border="0"></a>
+
+        <br>
+        <br>
+        <div class="text">
+          <br>
+          <br>
+          <b>Edad</b>
+          <br>
+          <br>
+          La mayor cantidad de ejecutados se situaron en el grupo de edad 35-44 en el momento de su muerte, seguido en segundo lugar por el grupo de edad 25-35 con una notable diferencia. En tercer lugar se encontró el grupo 45-54 y en cuarto lugar el grupo 55-74. El resto de grupos (5-14, +75) se encontraron escasamente representados. 
+
+          <br>
+          <br>
+         
+
+
+          Se eligió para esta parte de la historia un gráfico de barras por los mismos motivos mencionados anteriormente para otros casos. También se ordenaron las categorías de mayor valor a menor valor para facilitar su comparación e interpretación.
+
+          <br>
+          <br>
+           Este gráfico se hizo en python, utilizando las librerías seaborn y matplotlib. Se han utilizado estas herramientas debido a la popularidad y eficacia de python y estas librerías para el análisis y visualización de datos. Además, el amplio soporte y la vasta documentación generados por la comunidad permite un desenvolvimiento del usuario bastante bueno y una buena rapidez en la resolución de dudas e inconvenientes.  
+          
+
+        </div> 
+
+        <br>
+
+         <a href="https://ibb.co/J7bnXS7"><img src="https://i.ibb.co/PhbxBVh/ex-byage.png" alt="ex-byage" border="0"></a>
+
+         <br>
+         <br>
+
+         <div class="text">
+           <br>
+           <br>
+           <b>Métodos de ejecución</b>
+           <br>
+           <br>
+
+           Respecto al método de ejecución, el más empleado ha sido la inyección letal, seguido con mucha diferencia por la electrocución (silla eléctrica). El resto de métodos han sido escasamente utilizados (y por tanto escasamente representados en la visualización), siendo el pelotón de fusilamiento y el ahorcamiento totalmente anecdóticos.
+           <br>
+           <br>
+
+           El gráfico elegido ha sido un gráfico de barras horizontales, que suele utilizarse cuando las categorías a representar son numerosas. Por lo demás cumple una función muy similar al gráfico de barras verticales: comparar valores entre categorías. No obstante, aquí se ha usado fundamentalmente con motivos estéticos: para añadir diversidad estética al trabajo.
+
+           <br>
+           <br>
+          Este gráfico ha sido realizado mediante Google Sheets. Los motivos de su uso aquí son los mismos que los expuestos anteriormente.
+
+        </div> 
+
+        <br>
+
+        <iframe width="600" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRVxRfKTiuF2Lz0Y-W475En2e48yWomGHPoHaMENwwN_n3phRJF2e4WTp5QmNhKWbKX8__rZjN3c12J/pubchart?oid=1722284449&amp;format=interactive"></iframe>
+
+        <br>
+        <br>
+        <br>
+
+        <div class="plot">
+      <p style = "page-break-before: always">
+
+        <h2 class="plot-title">Víctimas</h2>
+        <div class="text">
+          <br>
+          <br>
+
+          <b> Asesinato único o múltiple</b>
+          <br>
+          <br>
+          Los presos ejecutados que cometieron asesinatos múltiples representaron un 25 % respecto al total, y aquellos que sólo cometieron un asesinato representaron un 75 %. Cabría pensar que entre los presos ejecutados, el asesinato múltiple presentaría un mayor porcentaje o proporción frente al total. No obstante, la representación muestra que no es así: los ejecutados con un sólo asesinato son más numerosos. Quizás los jueces hayan tenido más en cuenta otros agravantes para condenar durante el periodo analizado. 
+          <br>
+          <br>
+          Se ha elegido el gráfico circular por los mismos motivos mencionados anteriormente en casos similares: idoneidad para representar proporciones siempre y cuando no se requiera mucha precisión.
+           <br>
+           <br>
+          Este gráfico ha sido realizado mediante Google Sheets. Los motivos de uso de esta herramienta son los mismos que los expuestos anteriormente.
+
+        </div> 
+        <br>
+
+        <a href="https://ibb.co/4gxVZ51"><img src="https://i.ibb.co/XkTCZvY/ex-bynumber.png" alt="ex-bynumber" border="0"></a>
+
+        <br>
+        <br>
+        <div class="text">
+          <br>
+          <br>
+          <b>Sexo</b>
+          <br>
+          </br>
+
+          Respecto al sexo de las víctimas de los ejecutados, los porcentajes de víctimas hombres y víctimas mujeres fueron muy similares, presentando las mujeres un 48,1 % y los hombres un 51,9 %. Esto es esperable, debido a que los porcentajes de hombres y mujeres en toda población suele rondar el 50 % para cada uno. 
+          <br>
+          <br>
+
+          Como otras veces anteriores en este trabajo, se ha usado un gráfico circular porque se quería plasmar proporciones (víctimas hombres y víctimas mujeres) de un total (víctimas totales). Hemos usado los mismos colores que en el caso de la proporción de ejecutados en base al sexo para permitir una interpretación del gráfico más directa e intuitiva. 
+          <br>
+          <br>
+          Este gráfico se ha realizado en Google Sheets. Los motivos de su uso aquí son los mismos que los expuestos anteriormente en otros casos. 
+           
+
+        </div>
+        <br>
+
+       <iframe width="600" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vR6BHzDk71LIV5oqEKMzxY2323mdpfSo5F-MJWaDfnYo3_B5Z_2lsFwmVSXyma4JZ5A3zTP-7M2XgcC/pubchart?oid=1731194724&amp;format=interactive"></iframe>
+        <br>
+        <br>
+
+      
+        
+        <div class="text">
+          <br>
+          <br>
+          <b>Raza</b>
+          <br>
+          <br>
+
+          El mayor número de víctimas producido por los condenados a muerte ejecutados en el periodo analizado se encontró entre la raza blanca, seguida en segundo lugar por las víctimas de raza negra. A continuación se situaron los latinos en tercer lugar, asiáticos en cuarto lugar y nativos americanos en quinto lugar.
+          <br>
+          <br> 
+          
+          Aquí hemos usado el gráfico de barras debido a que, como ya se ha explicado en casos anteriores en este trabajo, es un tipo de visualización muy adecuado para comparar valores entre diversas categorías con precisión. También hemos usado los mismos colores para los grupos raciales que en el gráfico de " nº de ejecutados en base a su grupo racial", esto con el objetivo de facilitar interpretación y análisis.
+
+           <br>
+           <br>
+          Este gráfico ha sido realizado mediante python y sus librerías matplotlib y seaborn. Los motivos de su uso aquí son los mismos que los expuestos anteriormente en otros casos. 
+
+        </div> 
+        <br>
+
+        <a href="https://imgbb.com/"><img src="https://i.ibb.co/GJJnZq1/v-ctimas-raza.png" alt="v-ctimas-raza" border="0"></a>
+        <br>
+        <br>
+        <br>
+
+         <div class="plot">
+        
+        <h2 class="plot-title">Regiones y Estados</h2>
+        <div class="text">
+          <br>
+          <br>
+          Conviene en este apartado saltarse la estructura narrativa llevada hasta ahora.
+          <br>
+          <br>
+
+          Para representar el número de presos ejecutados en función de la región y el estado de los Estados Unidos se ha realizado un mapa de árbol "zoomable" (zoomable treemap). El motivo de la utilización de un mapa de árbol para esta visualización ha sido porque estamos tratando unas informaciones que son jerárquicas, es decir, el nº de ejecutados en cada región engloba al nº de ejecutados de cada estado perteneciente a esta, y el mapa de árbol resulta excelente para representar las proporciones de una información con jerarquía. Explicar que se llama mapa de árbol "zoomable" porque, ejemplificando con nuestro caso, al clickar sobre cada región aparecen los estados que la componen, es decir, en el gráfico se hace zoom de lo más global (regiones) a lo más local (estados). Se trata pues de un mapa de árbol interactivo que resulta bastante eficiente y visual en aquello que quiere representar y por tanto muy adecuado para visualizar este apartado.
+          <br>
+          <br>
+
+          Explicado esto, y centrándonos en las regiones y estados, observamos en el mapa de árbol que la región donde más se ha ejecutado en el periodo analizado ha sido la región sur (South en el gráfico), con aproximadamente 1200 ejecutados. Le sigue el Medio Oeste (Midwest) en segundo lugar con 178 ejecuciones, la región Oeste (West) en tercer lugar con 85 ejecuciones y, finalmente, la región Noreste (Northwest) en cuarto lugar con sólo 4 ejecuciones.
+          <br>
+          <br>
+          Entre los estados con mayor número de ejecuciones nos encontramos en la región sur con Texas (538) y Oklahoma (112), en la región del Medio Oeste con Missouri (87) y Ohio (53), y en la región Oeste con Arizona (37) y California (13). En la región Noreste, de los dos únicos estados que ejecutaron para el periodo analizado, el que más ejecutó fue Pennsylvania (3).
+
+          <br>
+          <br>
+          
+          Este gráfico se ha realizado mediante la librería de javascript D3plus. Se ha decidido utilizar esta herramienta debido a su facilidad de uso a la hora de generar gráficos relativamente complejos y por el buen resultado estético de las visualizaciones generadas. 
+          <br>
+          <br>
+          
+          Como es un gráfico interactivo y por tanto sería difícil plasmarlo en formato estático/pdf, se ofrece aquí la url de la visualización:
+           
+            <h4 class="main-url">Url: <a href="https://js-jafpjn.stackblitz.io/">https://js-jafpjn.stackblitz.io/</a></h3>
+
+            Así como también otra url al proyecto de stackblit de este mapa de árbol, con su código correspondiente:
+
+            <h4 class="main-url">Url: <a href="https://stackblitz.com/edit/js-jafpjn?file=index.html">https://stackblitz.com/edit/js-jafpjn?file=index.html/</a></h3>
+
+            También se ofrece el enlace de la web donde se sacó el nombre completo de los estados, que no aparece en el conjunto de datos original:
+
+            <h4 class="main-url">Url: <a href="https://en.wikipedia.org/wiki/List_of_states_and_territories_of_the_United_States">https://en.wikipedia.org/wiki/List_of_states_and_territories_of_the_United_States</a></h3>
+
+
+
+
+        </div>
+        <br>
+        <br>
+        <br>
+
+        
+
+
+
+<div class="plot">
+        
+        <h2 class="plot-title">Evolución temporal de las ejecuciones (general y desglosada por métodos)</h2>
+        <div class="text">
+          <br>
+          <br>
+          <b>Evolución general</b>
+          <br>
+          <br>
+          Visualizando el número de ejecuciones a lo largo del tiempo, observamos que estas siguen una tendencia creciente desde el inicio del periodo (1976) hasta  cerca del año 2000, punto en el que alcanza su pico máximo, que es bastante elevado. Posterior a este pico, observamos un descenso del número de ejecuciones, que va decayendo durante todo lo que queda de periodo hasta el final. No obstante, las ejecuciones al final del periodo (años 10 del s.XXI) superan de forma notable en número a las ejecuciones del principio del periodo (finales de los años 70). El gran pico alcanzado sobre finales de los 90 refuta la visión e hipótesis que personalmente se tenía antes de realizar la visualización, hipótesis donde se hacía la suposición de que en la visualización las ejecuciones descenderían en número de forma más o menos homogénea desde temprano en el periodo.
+          <br>
+          <br>
+          El gráfico de líneas es el gráfico elegido para esta visualización debido a que es muy adecuado cuando queremos representar o plasmar la evolución de los valores de una magnitud/medida/categoría a lo largo del tiempo.
+          <br>
+          <br>
+          Para generar este gráfico se ha usado python con sus librerías seaborn y matplotlib. Los motivos de su uso aquí son los mismos que los expuestos anteriormente en otros casos. 
+           
+
+        </div> 
+        <br> 
+       <a href="https://ibb.co/mNGJcMd"><img src="https://i.ibb.co/Z2VdMkv/L-neas-ejecuciones.png" alt="L-neas-ejecuciones" border="0"></a>
+
+       <br>
+       <br>
+
+        <div class="text">
+          <br>
+          <br>
+          <p style = "page-break-before: always">
+          <b>Evolución temporal de las ejecuciones desglosadas por método de ejecución</b>
+          <br>
+          <br>
+
+          Desglosando el número de ejecutados por métodos de ejecución y representando su evolución a lo largo del tiempo, observamos que la electrocución fue el método más utilizado desde finales de los sententa hasta finales de los ochenta, y aunque (de manera exigua) hasta hace muy poco se siguió utilizando (último registro en 2014), este método ha sido casi desplazado por la inyección letal, que empezó a ser más utilizada a principio de los noventas y ha sido desde entonces con diferencia el método más utilizado, aumentando rápidamente su uso y siendo por tanto el responsable de la mayor parte de las ejecuciones a lo largo del periodo. Respecto a la cámara de gas, este método ha sido muy poco utilizado (sobre todo en comparación con la electrocución y la inyección letal), aunque ha conseguido pervivir con pocas ejecuciones a lo largo del tiempo hasta finales de los años 90.
+          <br>
+          <br>
+
+          <b>Aclaración:</b> No hemos representado en este gráfico los otros dos métodos restantes (pelotón de fusilamiento y ahorcamiento) debido a su escaso uso y poca pervivencia en el tiempo.
+          <br>
+          <br>
+
+          El gráfico de líneas ha sido utilizado en esta visualización debido a la capacidad de este para comparar la evolución en el tiempo entre los valores de distintas categorías.
+
+           <br>
+           <br>
+          Este gráfico ha sido realizado en Google Sheets. Los motivos de su uso aquí son los mismos que los expuestos anteriormente en otros casos. 
+
+        </div> 
+        <br>
+        <iframe width="600" height="360.5" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vR6BHzDk71LIV5oqEKMzxY2323mdpfSo5F-MJWaDfnYo3_B5Z_2lsFwmVSXyma4JZ5A3zTP-7M2XgcC/pubchart?oid=2060724075&amp;format=interactive"></iframe>
+        <br>
+        <br>
+        <p style = "page-break-before: always">
+
+        <div class="plot">
+      
+        <h2 class="plot-title">Conclusiones</h2>
+
+        Con los resultados de las distintas visualizaciones de esta historia podemos responder a las preguntas planteadas en la introducción:
+
+        <br>
+        <br>
+          - <b> ¿Qué características fueron las más comunes entre los presos ejecutados y qué método se usó más para realizar estas ejecuciones?.</b> Los presos ejecutados entre 1976 y 2016 han sido en su mayoría hombres de raza blanca, de entre 35 y 44 años, ejecutados mediante la inyección letal. Respecto a esto añadir varias matizaciones: Que la mayoría de ejecutados fueran de raza blanca resulta lógico, pues probablemente sea debido a que es el grupo étnico más grande en la población de Estados Unidos para el periodo considerado (a más población de un grupo más representatividad en diversos aspectos y fenómenos). Otro apunte a realizar es que la llamativa e inmensa representación de hombres en el total de ejecutados puede ser debida a la posibilidad de que (teniendo en cuenta el hecho comprobado de que las mujeres cometen en general menos delitos que los hombres) la cantidad de mujeres que cometan crímenes de gravedad sea muy inferior en comparación con los hombres (los crímenes de pena de muerte en Estados Unidos se reservan para ciertos casos de asesinato agravado o de cierta gravedad).
+          <br>
+          <br>
+          -<b> ¿Qué porcentaje de ejecutados cometieron asesinatos múltiple y cuáles fueron las características de las  víctimas?.</b> Los asesinatos múltiples cometidos por presos ejecutados supusieron un 25 % frente al 75 % de ejecutados que sólo tuvieron una víctima. Las víctimas más frecuentes fueron las de raza blanca. En cuanto al sexo,las víctimas hombres y mujeres se encontraron representadas de manera similar sobre el total de víctimas(asemejándose a su representación en la generalidad de las poblaciones humanas, que suele ser aproximadamente del 50 % en hombres y 50 % en mujeres). Conviene matizar que es muy probable que la mayoría de víctimas fueran de raza blanca debido a que es el grupo étnico más grande de Estados Unidos (a mayor población de un grupo, mayor representatividad en diversos aspectos y fenómenos).
+          <br>
+          <br>
+          -<b> ¿En qué región y estado de Estados Unidos se ha ejecutado más para el periodo analizado?.</b> La región de Estados Unidos donde más presos se ejecutó en el periodo analizado fue la región Sur (que también cuenta con el mayor número de estados ejecutores) y el estado Texas (que se encuentra en la región Sur) el estado que más ejecutó. Esto puede ser reflejo de las distintas culturas y concepciones entre regiones y estados de EE.UU. Determinadas ideologías políticas dominantes en una población pueden abogar por una justicia más agresiva.
+          <br>
+          <br>
+          - <b> ¿Cómo ha evolucionado el número de ejecuciones a lo largo del tiempo?.</b>Aunque existe un progreso ascendente del número de ejecuciones entre finales de los 70 y finales de los 90, a partir de este punto las ejecuciones decrecen durante el resto del periodo hasta su final, indicando un declive de este castigo capital en los Estados Unidos. Además, los métodos de ejecución más compasivos (inyección letal) desplazaron de forma considerable a los más agresivos o crueles (electrocución). Ambos hechos podrían ser indicativos de un rechazo cada vez mayor de la pena de muerte en este país, un aborrecimiento creciente tanto de jueces como de instituciones que probablemente lleve a la extinción de este castigo en la futura justicia estadounidense.
+        <div class="text">
+
+          
+
+        </div> 
+
+    
+
+
+
+        </body>
+</html>
+
+       
+        
