@@ -60,7 +60,7 @@
     <div class="summary">
         <h2 class="text-title">Resumen</h2>
         <div class="text">
-          El objetivo de este trabajo es describir las características y circunstancias que rodearon a las ejecuciones en Estados Unidos durante el periodo 1976-2016 a través de la visualización. Para ello analizamos diferentes aspectos de los presos ejecutados en el periodo: las víctimas de los presos, localización geográfica de las ejecuciones y evolución de las ejecuciones a lo largo del tiempo. La audiencia principal es el profesor de la asignatura de Visualización de datos del máster de Big Data y Data Science de la Universidad internacional de Valencia, y el mensaje es transmitido a través de una historia de visualización en formato pdf y en formato web. Los tipos de visualización utilizados son gráfico circular, gráfico de barras vertical y horizontal, treemap zoomable y gráfico de líneas. Las herramientas utilizadas son Google Sheets, R con su librería ggplot 2, python con sus librerías seaborn y matplotlib, y javascript con su librería D3plus. Posterior a la realización de la historia de visualización se extraen unas conclusiones a partir de los resultados de esta: los presos ejecutados en Estados Unidos durante el periodo analizado fueron en su mayoría hombres blancos de entre 35-44 años, y fueron ejecutados mediante inyección letal. En la mayoría de los casos los reos ejecutados asesinaron sólo a una víctima, siendo esta frecuentemente de raza blanca. Hombres y mujeres fueron víctimas de los reos en igual proporción. La región que más presos ejecutó fue la región Sur y el estado que más ejecutó fue Texas. Aunque hasta finales de los noventa el número de ejecuciones estuvo en una tendencia ascendente en su evolución temporal, a partir de los 2000 entró en una tendencia descendente hasta el final del periodo, y la inyección letal llegó a desplazar a todos los otros métodos en su uso en las ejecuciones. 
+          El objetivo de este trabajo es describir las características y circunstancias que rodearon a las ejecuciones en Estados Unidos durante el periodo 1976-2016 a través de la visualización. Para ello analizamos diferentes aspectos de los presos ejecutados en el periodo: las víctimas de los presos, localización geográfica de las ejecuciones y evolución de las ejecuciones a lo largo del tiempo. El mensaje es transmitido a través de una historia de visualización en formato web. Los tipos de visualización utilizados son gráfico circular, gráfico de barras vertical y horizontal, treemap zoomable y gráfico de líneas. Las herramientas utilizadas son Python con sus librerías seaborn y matplotlib, y Javascript con su librería D3plus. Posterior a la realización de la historia de visualización se extraen unas conclusiones a partir de los resultados de esta: los presos ejecutados en Estados Unidos durante el periodo analizado fueron en su mayoría hombres blancos de entre 35-44 años, y fueron ejecutados mediante inyección letal. En la mayoría de los casos los reos ejecutados asesinaron sólo a una víctima, siendo esta frecuentemente de raza blanca. Hombres y mujeres fueron víctimas de los reos en igual proporción. La región que más presos ejecutó fue la región Sur y el estado que más ejecutó fue Texas. Aunque hasta finales de los noventa el número de ejecuciones estuvo en una tendencia ascendente en su evolución temporal, a partir de los años  2000 entró en una tendencia descendente hasta el final del periodo, desplazando además en el método la inyección letal a todos los otros métodos en su uso en las ejecuciones. 
 
 
         </div>
@@ -83,7 +83,7 @@ De esta manera, esta historia de visualización se contará a través de las sig
 <br>
 <br>
 
-<b>- Ejecutados:</b> Los presos que fueron ejecutados en el periodo de tiempo que analizamos aquí. Se analizará el sexo de los reos, sus grupos raciales, grupos de edades y métodos con los que fueron ejecutados. Se intentará responder a la pregunta:<b> ¿Qué características fueron las más comunes entre los presos ejecutados y qué método se usó más para realizar las ejecuciones?.</b>
+<b>- Ejecutados:</b> Los presos que fueron ejecutados en el periodo de tiempo que analizamos aquí. Se analizará el sexo de los reos, sus grupos raciales, grupos de edad y métodos con los que fueron ejecutados. Se intentará responder a la pregunta:<b> ¿Qué características fueron las más comunes entre los presos ejecutados y qué método se usó más para realizar las ejecuciones?.</b>
 <br>
 <br>
 <b>- Víctimas:</b> Las víctimas asesinadas por los presos que fueron ejecutados. Se analizará si la víctima fue única o múltiple, el sexo de las víctimas y su raza. Se intentará responder a la pregunta:<b> ¿Qué porcentaje de ejecutados cometieron asesinatos múltiple y cuáles fueron las características de las víctimas?.</b>
@@ -100,7 +100,7 @@ Tras el desarrollo de estos apartados se procederá a la realización de una int
 <br>
 <br>
             <div class="metadato  " >
-              La audiencia de este trabajo es todo el que quiera tomar como ejemplo y documentación este proyecto, pero es especialmente el profesor de la asignatura de Visualización de datos del máster Big Data y Data Science de la Universidad Internacional de Valencia (VIU). El contexto de este trabajo es la satisfacción de los requisitos de evaluación de la asignatura antes mencionada, pero también es la práctica y desarrollo de competencias profesionales exigidas tanto por el máster como personalmente.
+              La audiencia de este trabajo es todo el que quiera tomar como ejemplo y documentación este proyecto. Este es un proyecto 'remake' de otro anterior, trabajo final de la asignatura de Visualización de datos del máster Big Data y Data Science de la Universidad Internacional de Valencia (VIU). El contexto de este trabajo es la práctica y desarrollo de competencias profesionales relacionadas con la  visualización a través del diseño de código en Python y Javascript.
               
 
             </div>
@@ -108,11 +108,10 @@ Tras el desarrollo de estos apartados se procederá a la realización de una int
 
 </br>
 </br>
-<b>La audiencia principal</b> de este trabajo es <b>el profesor de la asignatura de Visualización de datos del
- máster Big Data y Data Science de la Universidad Internacional de Valencia (VIU)</b>. Debido a que este es un proyecto académico, y teniendo en cuenta la audiencia principal, para cada visualización se realizará primero una pequeña interpretación de lo observado, después una justificación del motivo por el que se eligió el tipo de visualización y otros detalles teóricos, y finalmente se mencionará y justificará con qué herramientas está elaborada la visualización correspondiente.
+ Para cada visualización se realizará primero una pequeña interpretación de lo observado, después una justificación del motivo por el que se eligió el tipo de visualización, así como otros detalles teóricos sobre la visualización de datos e información.
 <br>
 <br>
-Esta historia de visualización, <b>el mensaje</b> de este trabajo, se plasmará tanto en formato pdf como en formato web a través de un proyecto de Stackblitz generado para ello.
+Esta historia de visualización, <b>el mensaje</b> de este trabajo, se plasmará en formato web a través de un proyecto de Stackblitz generado para ello.
         </div>
     </div>
 <br>
@@ -134,9 +133,7 @@ Esta historia de visualización, <b>el mensaje</b> de este trabajo, se plasmará
           <br>
 
           Para visualizar esta información se ha usado un gráfico circular, ya que es un tipo de visualización muy idónea para representar proporciones de un total siempre y cuando la precisión no sea demasiado importante y el número de categorías a representar no sea muy elevado.
-          <br>
-          <br>
-          Este gráfico se ha construido usando la herramienta Google Sheets. Esta es una herramienta hoja de cálculo ofrecida por Google, elegida para trabajar en este proyecto debido a que permite realizar visualizaciones bastante decentes de forma sencilla y eficaz.
+         
 
         </div> 
         <br> 
@@ -158,10 +155,8 @@ Esta historia de visualización, <b>el mensaje</b> de este trabajo, se plasmará
           Respecto a la raza de los ejecutados, el mayor número de ejecutados se encontró entre los reos de raza blanca. En segundo lugar se encontraron los reos de raza negra, latinos en tercer lugar, nativos americanos en cuarto y asiáticos en quinto lugar.
           <br>
           <br>
-          Para esta visualización se ha elegido un gráfico de barras debido a que es bastante bueno para comparar valores entre diferentes categorías. También podría haberse realizado un gráfico circular, pero había un número algo elevado de categorías y se preferió que además hubiera más precisión en el análisis visual. También se ha ordenado las categorías de mayor número de ejecutados a menor número para una mejor comparación y, por tanto, interpretación.
-          <br>
-          <br>
-          Este gráfico ha sido realizado en el lenguaje de análisis estadístico R, con la librería ggplot2. Aunque no se ha visto en clase, se ha decidido utilizar estas herramientas debido a que tanto R como sus librerías son bastante competentes para realizar análisis estadísticos y representaciones gráficas, y cuentan con un gran soporte y documentación entre la comunidad que permite al usuario desenvolverse con facilidad y resolver inconvenientes durante el análisis y diseño de forma rápida.
+          Para esta visualización se ha elegido un gráfico de barras debido a que es bastante bueno para comparar valores entre diferentes categorías. El gráfico es en concreto un gráfico de barras horizontales, que suele utilizarse cuando las categorías a representar son numerosas. Podría haberse realizado un gráfico circular, pero había un número algo elevado de categorías y se preferió que hubiera más precisión en el análisis visual. También se han ordenado las categorías de mayor número de ejecutados a menor número para una mejor comparación y, por tanto, interpretación.
+          
 
         </div> 
         <br>
@@ -184,10 +179,6 @@ Esta historia de visualización, <b>el mensaje</b> de este trabajo, se plasmará
 
 
           Se eligió para esta parte de la historia un gráfico de barras por los mismos motivos mencionados anteriormente para otros casos. También se ordenaron las categorías de mayor valor a menor valor para facilitar su comparación e interpretación.
-
-          <br>
-          <br>
-           Este gráfico se hizo en python, utilizando las librerías seaborn y matplotlib. Se han utilizado estas herramientas debido a la popularidad y eficacia de python y estas librerías para el análisis y visualización de datos. Además, el amplio soporte y la vasta documentación generados por la comunidad permite un desenvolvimiento del usuario bastante bueno y una buena rapidez en la resolución de dudas e inconvenientes.  
           
 
         </div> 
@@ -210,11 +201,8 @@ Esta historia de visualización, <b>el mensaje</b> de este trabajo, se plasmará
            <br>
            <br>
 
-           El gráfico elegido ha sido un gráfico de barras horizontales, que suele utilizarse cuando las categorías a representar son numerosas. Por lo demás cumple una función muy similar al gráfico de barras verticales: comparar valores entre categorías. No obstante, aquí se ha usado fundamentalmente con motivos estéticos: para añadir diversidad estética al trabajo.
+           Se eligió para esta parte de la historia un gráfico de barras por los mismos motivos mencionados anteriormente para otros casos.
 
-           <br>
-           <br>
-          Este gráfico ha sido realizado mediante Google Sheets. Los motivos de su uso aquí son los mismos que los expuestos anteriormente.
 
         </div> 
 
@@ -241,9 +229,6 @@ Esta historia de visualización, <b>el mensaje</b> de este trabajo, se plasmará
           <br>
           <br>
           Se ha elegido el gráfico circular por los mismos motivos mencionados anteriormente en casos similares: idoneidad para representar proporciones siempre y cuando no se requiera mucha precisión.
-           <br>
-           <br>
-          Este gráfico ha sido realizado mediante Google Sheets. Los motivos de uso de esta herramienta son los mismos que los expuestos anteriormente.
 
         </div> 
         <br>
@@ -264,9 +249,6 @@ Esta historia de visualización, <b>el mensaje</b> de este trabajo, se plasmará
           <br>
 
           Como otras veces anteriores en este trabajo, se ha usado un gráfico circular porque se quería plasmar proporciones (víctimas hombres y víctimas mujeres) de un total (víctimas totales). Hemos usado los mismos colores que en el caso de la proporción de ejecutados en base al sexo para permitir una interpretación del gráfico más directa e intuitiva. 
-          <br>
-          <br>
-          Este gráfico se ha realizado en Google Sheets. Los motivos de su uso aquí son los mismos que los expuestos anteriormente en otros casos. 
            
 
         </div>
@@ -290,10 +272,7 @@ Esta historia de visualización, <b>el mensaje</b> de este trabajo, se plasmará
           <br> 
           
           Aquí hemos usado el gráfico de barras debido a que, como ya se ha explicado en casos anteriores en este trabajo, es un tipo de visualización muy adecuado para comparar valores entre diversas categorías con precisión. También hemos usado los mismos colores para los grupos raciales que en el gráfico de " nº de ejecutados en base a su grupo racial", esto con el objetivo de facilitar interpretación y análisis.
-
-           <br>
-           <br>
-          Este gráfico ha sido realizado mediante python y sus librerías matplotlib y seaborn. Los motivos de su uso aquí son los mismos que los expuestos anteriormente en otros casos. 
+ 
 
         </div> 
         <br>
@@ -366,9 +345,7 @@ Esta historia de visualización, <b>el mensaje</b> de este trabajo, se plasmará
           <br>
           <br>
           El gráfico de líneas es el gráfico elegido para esta visualización debido a que es muy adecuado cuando queremos representar o plasmar la evolución de los valores de una magnitud/medida/categoría a lo largo del tiempo.
-          <br>
-          <br>
-          Para generar este gráfico se ha usado python con sus librerías seaborn y matplotlib. Los motivos de su uso aquí son los mismos que los expuestos anteriormente en otros casos. 
+        
            
 
         </div> 
@@ -395,10 +372,6 @@ Esta historia de visualización, <b>el mensaje</b> de este trabajo, se plasmará
           <br>
 
           El gráfico de líneas ha sido utilizado en esta visualización debido a la capacidad de este para comparar la evolución en el tiempo entre los valores de distintas categorías.
-
-           <br>
-           <br>
-          Este gráfico ha sido realizado en Google Sheets. Los motivos de su uso aquí son los mismos que los expuestos anteriormente en otros casos. 
 
         </div> 
         <br>
