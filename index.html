@@ -15,6 +15,7 @@
  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3plus/1.9.2/d3plus.full.min.js"></script>
 
     <!-- add styles to text and graphics -->
+    <link rel="stylesheet" type="text/css" href="style.css">
     <style>
         h1 {
             background-color: black;
@@ -61,7 +62,7 @@
     <div class="summary">
         <h2 class="text-title">Resumen</h2>
         <div class="text">
-          El objetivo de este trabajo es describir las características y circunstancias que rodearon a las ejecuciones en Estados Unidos durante el periodo 1976-2016 a través de la visualización. Para ello analizamos diferentes aspectos de los presos ejecutados en el periodo: las víctimas de los presos, localización geográfica de las ejecuciones y evolución de las ejecuciones a lo largo del tiempo. El mensaje es transmitido a través de una historia de visualización en formato web. Los tipos de visualización utilizados son gráfico circular, gráfico de barras vertical y horizontal, treemap zoomable y gráfico de líneas. Las herramientas utilizadas son Python con sus librerías seaborn y matplotlib, y Javascript con su librería D3plus. Posterior a la realización de la historia de visualización se extraen unas conclusiones a partir de los resultados de esta: los presos ejecutados en Estados Unidos durante el periodo analizado fueron en su mayoría hombres blancos de entre 35-44 años, y fueron ejecutados mediante inyección letal. En la mayoría de los casos los reos ejecutados asesinaron sólo a una víctima, siendo esta frecuentemente de raza blanca. Hombres y mujeres fueron víctimas de los reos en igual proporción. La región que más presos ejecutó fue la región Sur y el estado que más ejecutó fue Texas. Aunque hasta finales de los noventa el número de ejecuciones estuvo en una tendencia ascendente en su evolución temporal, a partir de los años  2000 entró en una tendencia descendente hasta el final del periodo, desplazando además en el método la inyección letal a todos los otros métodos en su uso en las ejecuciones. 
+          El objetivo de este trabajo es describir las características y circunstancias que rodearon a las ejecuciones en Estados Unidos durante el periodo 1976-2016 a través de la visualización. Para ello analizamos diferentes aspectos de los presos ejecutados en el periodo: las víctimas de los presos, localización geográfica de las ejecuciones y evolución de las ejecuciones a lo largo del tiempo. El mensaje es transmitido a través de una historia de visualización en formato web. Los tipos de visualización utilizados son gráfico circular, gráfico de barras vertical y horizontal, treemap zoomable y gráfico de líneas. Las herramientas utilizadas son Python con sus librerías seaborn y matplotlib, y Javascript con su librería D3plus. Posterior a la realización de la historia de visualización se extraen unas conclusiones a partir de los resultados de esta: los presos ejecutados en Estados Unidos durante el periodo analizado fueron en su mayoría hombres blancos de entre 35-44 años, y fueron ejecutados mediante inyección letal. En la mayoría de los casos los reos ejecutados asesinaron sólo a una víctima, siendo esta frecuentemente de raza blanca. Hombres y mujeres fueron víctimas de los reos en igual proporción. La región que más presos ejecutó fue la región Sur y el estado que más ejecutó fue Texas. Aunque hasta finales de los noventa el número de ejecuciones estuvo en una tendencia ascendente en su evolución temporal, a partir de los años  2000 entró en una tendencia descendente hasta el final del periodo, desplazando además en el método de ejecución la inyección letal a todos los otros métodos en su uso. 
 
 
         </div>
@@ -156,7 +157,7 @@ Esta historia de visualización, <b>el mensaje</b> de este trabajo, se plasmará
           Respecto a la raza de los ejecutados, el mayor número de ejecutados se encontró entre los reos de raza blanca. En segundo lugar se encontraron los reos de raza negra, latinos en tercer lugar, nativos americanos en cuarto y asiáticos en quinto lugar.
           <br>
           <br>
-          Para esta visualización se ha elegido un gráfico de barras debido a que es bastante bueno para comparar valores entre diferentes categorías. El gráfico es en concreto un gráfico de barras horizontales, que suele utilizarse cuando las categorías a representar son numerosas. Podría haberse realizado un gráfico circular, pero había un número algo elevado de categorías y se preferió que hubiera más precisión en el análisis visual. También se han ordenado las categorías de mayor número de ejecutados a menor número para una mejor comparación y, por tanto, interpretación.
+          Para esta visualización se ha elegido un gráfico de barras debido a que es bastante bueno para comparar valores entre diferentes categorías. El gráfico es en concreto un gráfico de barras horizontales, que suele utilizarse cuando las categorías a representar son numerosas. Podría haberse realizado un gráfico circular, pero había un número algo elevado de categorías y se preferió que hubiera más precisión en el análisis visual. También se han ordenado las categorías de menor número de ejecutados a mayor número para una mejor comparación y, por tanto, interpretación.
           
 
         </div> 
@@ -172,12 +173,11 @@ Esta historia de visualización, <b>el mensaje</b> de este trabajo, se plasmará
           <b>Edad</b>
           <br>
           <br>
-          La mayor cantidad de ejecutados se situaron en el grupo de edad 35-44 en el momento de su muerte, seguido en segundo lugar por el grupo de edad 25-35 con una notable diferencia. En tercer lugar se encontró el grupo 45-54 y en cuarto lugar el grupo 55-74. El resto de grupos (5-14, +75) se encontraron escasamente representados. 
+          La mayor cantidad de ejecutados se situaron en el grupo de edad 35-44 en el momento de su muerte, seguido en segundo lugar por el grupo de edad 25-35 con una notable diferencia. En tercer lugar se encontró el grupo 45-54, en cuarto lugar el grupo 55-64 y en quinto lugar los reos del grupo 65-74 . Tanto el grupo 15-24 como el grupo +75 se encontraron escasamente representados. 
 
           <br>
           <br>
          
-
 
           Se eligió para esta parte de la historia un gráfico de barras por los mismos motivos mencionados anteriormente para otros casos. También se ordenaron las categorías de mayor valor a menor valor para facilitar su comparación e interpretación.
           
@@ -198,11 +198,11 @@ Esta historia de visualización, <b>el mensaje</b> de este trabajo, se plasmará
            <br>
            <br>
 
-           Respecto al método de ejecución, el más empleado ha sido la inyección letal, seguido con mucha diferencia por la electrocución (silla eléctrica). El resto de métodos han sido escasamente utilizados (y por tanto escasamente representados en la visualización), siendo el pelotón de fusilamiento y el ahorcamiento totalmente anecdóticos.
+           Respecto al método de ejecución, el más empleado fue la inyección letal, seguido con mucha diferencia por la electrocución (silla eléctrica). El resto de métodos han sido escasamente utilizados (y por tanto escasamente representados en la visualización), siendo el pelotón de fusilamiento y el ahorcamiento totalmente anecdóticos.
            <br>
            <br>
 
-           Se eligió para esta parte de la historia un gráfico de barras por los mismos motivos mencionados anteriormente para otros casos.
+           Se eligió para esta parte un gráfico de barras por los mismos motivos mencionados anteriormente para otros casos.
 
 
         </div> 
@@ -226,7 +226,7 @@ Esta historia de visualización, <b>el mensaje</b> de este trabajo, se plasmará
           <b> Asesinato único o múltiple</b>
           <br>
           <br>
-          Los presos ejecutados que cometieron asesinatos múltiples representaron un 25 % respecto al total, y aquellos que sólo cometieron un asesinato representaron un 75 %. Cabría pensar que entre los presos ejecutados, el asesinato múltiple presentaría un mayor porcentaje o proporción frente al total. No obstante, la representación muestra que no es así: los ejecutados con un sólo asesinato son más numerosos. Quizás los jueces hayan tenido más en cuenta otros agravantes para condenar durante el periodo analizado. 
+          Los presos ejecutados que cometieron asesinatos múltiples representaron un 25 % respecto al total, y aquellos que sólo cometieron un asesinato representaron un 75 %. Cabría pensar que entre los presos ejecutados el asesinato múltiple presentaría un mayor porcentaje o proporción frente al total, no obstante la representación muestra que no es así: los ejecutados con un sólo asesinato son más numerosos. Quizás los jueces hayan tenido más en cuenta otros agravantes para condenar durante el periodo analizado. 
           <br>
           <br>
           Se ha elegido el gráfico circular por los mismos motivos mencionados anteriormente en casos similares: idoneidad para representar proporciones siempre y cuando no se requiera mucha precisión.
@@ -245,7 +245,8 @@ Esta historia de visualización, <b>el mensaje</b> de este trabajo, se plasmará
           <br>
           </br>
 
-          Respecto al sexo de las víctimas de los ejecutados, los porcentajes de víctimas hombres y víctimas mujeres fueron muy similares, presentando las mujeres un 48,1 % y los hombres un 51,9 %. Esto es esperable, debido a que los porcentajes de hombres y mujeres en toda población suele rondar el 50 % para cada uno. 
+          Respecto al sexo de las víctimas de los ejecutados, los porcentajes de víctimas hombres y víctimas mujeres fueron muy similares, presentando las mujeres un 48 % y los hombres un 52 %. Esto es esperable, debido a que los porcentajes de hombres y mujeres en toda población suelen rondar el 50 % para cada uno. 
+
           <br>
           <br>
 
@@ -309,17 +310,7 @@ Esta historia de visualización, <b>el mensaje</b> de este trabajo, se plasmará
           <br>
           <br>
           <div id="viz"></div> 
-          Como es un gráfico interactivo y por tanto sería difícil plasmarlo en formato estático/pdf, se ofrece aquí la url de la visualización:
-           
-            <h4 class="main-url">Url: <a href="https://js-jafpjn.stackblitz.io/">https://js-jafpjn.stackblitz.io/</a></h3>
-
-            Así como también otra url al proyecto de stackblit de este mapa de árbol, con su código correspondiente:
-
-            <h4 class="main-url">Url: <a href="https://stackblitz.com/edit/js-jafpjn?file=index.html">https://stackblitz.com/edit/js-jafpjn?file=index.html/</a></h3>
-
-            También se ofrece el enlace de la web donde se sacó el nombre completo de los estados, que no aparece en el conjunto de datos original:
-
-            <h4 class="main-url">Url: <a href="https://en.wikipedia.org/wiki/List_of_states_and_territories_of_the_United_States">https://en.wikipedia.org/wiki/List_of_states_and_territories_of_the_United_States</a></h3>
+          
 
 
 
@@ -328,10 +319,7 @@ Esta historia de visualización, <b>el mensaje</b> de este trabajo, se plasmará
         <br>
         <br>
         <br>
-
-        
-
-
+        <br>
 
 <div class="plot">
         
@@ -342,7 +330,7 @@ Esta historia de visualización, <b>el mensaje</b> de este trabajo, se plasmará
           <b>Evolución general</b>
           <br>
           <br>
-          Visualizando el número de ejecuciones a lo largo del tiempo, observamos que estas siguen una tendencia creciente desde el inicio del periodo (1976) hasta  cerca del año 2000, punto en el que alcanza su pico máximo, que es bastante elevado. Posterior a este pico, observamos un descenso del número de ejecuciones, que va decayendo durante todo lo que queda de periodo hasta el final. No obstante, las ejecuciones al final del periodo (años 10 del s.XXI) superan de forma notable en número a las ejecuciones del principio del periodo (finales de los años 70). El gran pico alcanzado sobre finales de los 90 refuta la visión e hipótesis que personalmente se tenía antes de realizar la visualización, hipótesis donde se hacía la suposición de que en la visualización las ejecuciones descenderían en número de forma más o menos homogénea desde temprano en el periodo.
+          Visualizando el número de ejecuciones a lo largo del tiempo, observamos que estas siguen una tendencia creciente desde el inicio del periodo (1976) hasta cerca del año 2000, punto en el que alcanza su pico máximo, que es bastante elevado. Posterior a este pico, observamos un descenso del número de ejecuciones, que va decayendo durante todo lo que queda de periodo hasta el final. No obstante, las ejecuciones al final del periodo (años 10 del s.XXI) superan de forma notable en número a las ejecuciones del principio del periodo (finales de los años 70 del s. XX). El gran pico alcanzado sobre finales de los 90 refuta la visión e hipótesis que personalmente se tenía antes de realizar la visualización, hipótesis donde se hacía la suposición de que en la visualización las ejecuciones descenderían en número de forma más o menos homogénea desde temprano en el periodo.
           <br>
           <br>
           El gráfico de líneas es el gráfico elegido para esta visualización debido a que es muy adecuado cuando queremos representar o plasmar la evolución de los valores de una magnitud/medida/categoría a lo largo del tiempo.
@@ -392,7 +380,7 @@ Esta historia de visualización, <b>el mensaje</b> de este trabajo, se plasmará
           - <b> ¿Qué características fueron las más comunes entre los presos ejecutados y qué método se usó más para realizar estas ejecuciones?.</b> Los presos ejecutados entre 1976 y 2016 han sido en su mayoría hombres de raza blanca, de entre 35 y 44 años, ejecutados mediante la inyección letal. Respecto a esto añadir varias matizaciones: Que la mayoría de ejecutados fueran de raza blanca resulta lógico, pues probablemente sea debido a que es el grupo étnico más grande en la población de Estados Unidos para el periodo considerado (a más población de un grupo más representatividad en diversos aspectos y fenómenos). Otro apunte a realizar es que la llamativa e inmensa representación de hombres en el total de ejecutados puede ser debida a la posibilidad de que (teniendo en cuenta el hecho comprobado de que las mujeres cometen en general menos delitos que los hombres) la cantidad de mujeres que cometan crímenes de gravedad sea muy inferior en comparación con los hombres (los crímenes de pena de muerte en Estados Unidos se reservan para ciertos casos de asesinato agravado o de cierta gravedad).
           <br>
           <br>
-          -<b> ¿Qué porcentaje de ejecutados cometieron asesinatos múltiple y cuáles fueron las características de las  víctimas?.</b> Los asesinatos múltiples cometidos por presos ejecutados supusieron un 25 % frente al 75 % de ejecutados que sólo tuvieron una víctima. Las víctimas más frecuentes fueron las de raza blanca. En cuanto al sexo,las víctimas hombres y mujeres se encontraron representadas de manera similar sobre el total de víctimas(asemejándose a su representación en la generalidad de las poblaciones humanas, que suele ser aproximadamente del 50 % en hombres y 50 % en mujeres). Conviene matizar que es muy probable que la mayoría de víctimas fueran de raza blanca debido a que es el grupo étnico más grande de Estados Unidos (a mayor población de un grupo, mayor representatividad en diversos aspectos y fenómenos).
+          -<b> ¿Qué porcentaje de ejecutados cometieron asesinatos múltiple y cuáles fueron las características de las  víctimas?.</b> Los asesinatos múltiples cometidos por presos ejecutados supusieron un 25 % frente al 75 % de ejecutados que sólo tuvieron una víctima. Las víctimas más frecuentes fueron las de raza blanca. En cuanto al sexo,las víctimas hombres y mujeres se encontraron representadas de manera similar sobre el total de víctimas (asemejándose a su representación en la generalidad de las poblaciones humanas, que suele ser aproximadamente del 50 % en hombres y 50 % en mujeres). Conviene matizar que es muy probable que la mayoría de víctimas fueran de raza blanca debido a que es el grupo étnico más grande de Estados Unidos (a mayor población de un grupo, mayor representatividad en diversos aspectos y fenómenos).
           <br>
           <br>
           -<b> ¿En qué región y estado de Estados Unidos se ha ejecutado más para el periodo analizado?.</b> La región de Estados Unidos donde más presos se ejecutó en el periodo analizado fue la región Sur (que también cuenta con el mayor número de estados ejecutores) y el estado Texas (que se encuentra en la región Sur) el estado que más ejecutó. Esto puede ser reflejo de las distintas culturas y concepciones entre regiones y estados de EE.UU. Determinadas ideologías políticas dominantes en una población pueden abogar por una justicia más agresiva.
